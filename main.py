@@ -41,8 +41,10 @@ def main():
 
         for sprite in asteroids:
             if sprite.collides_with(player):
-                print("Game Over!")
-                sys.exit()
+                if player.hit() == 0:
+                    print("Game Over!")
+                    sys.exit()
+                sprite.split()
             for shot in shots:
                 if sprite.collides_with(shot):
                     sprite.split()

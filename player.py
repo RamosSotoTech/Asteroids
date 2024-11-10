@@ -9,6 +9,7 @@ class Player(circleshape.CircleShape):
         super().__init__(x, y, radius=radius)
         self.rotation = 0
         self.timer = 0
+        self.health = 3
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -52,3 +53,9 @@ class Player(circleshape.CircleShape):
         shot = Shot(self.position.x, self.position.y)
         shot.velocity = forward * PLAYER_SHOOT_SPEED
         return shot
+
+    def hit(self):
+        self.health -= 1
+        if self.health == 0:
+            self.kill()
+        return self.health
